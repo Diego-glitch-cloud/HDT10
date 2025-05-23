@@ -1,13 +1,22 @@
+/**
+ * La clase LectorTxt se encarga de leer un archivo de texto con información sobre conexiones entre ciudades 
+ * y cargar dicha información en una estructura de grafo.
+ */
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
 public class LectorTxt {
     
-    // Carga un grafo desde logistica.txt
-    // El formato del archivo es:
-    // ciudad1 ciudad2 tiempoNormal tiempoLluvia tiempoNieve tiempoTormenta 
-    public static boolean cargarGrafo(String PathArchivo, GrafoAdyacencia grafo) {
+    /**
+     * Carga un grafo desde un archivo de texto, en este caso, logistica.txt
+     * @param PathArchivo Ruta del archivo 
+     * @param grafo Objeto en el que se agregarán las ciudades y conexiones
+     * @return true si una línea fue procesada o false en caso de error
+     */
+    public static boolean cargarGrafo(String PathArchivo, Grafo grafo) {
+
         int lineasProcesadas = 0;
         
         try (BufferedReader br = new BufferedReader(new FileReader(PathArchivo))) {
@@ -31,8 +40,13 @@ public class LectorTxt {
         }
     }
     
-    // revisa linea por linea el archivo
-    private static boolean procesarLinea(String linea, GrafoAdyacencia grafo) {
+    /**
+     * Procesa líneas del archivo, extrayendo las ciudades y los tiempos de conexión y agrega la información al grafo
+     * @param linea indica la llínea del archivo a procesar
+     * @param grafo Grafo donde se van a agregar las ciudades y conexiones
+     * @return true si la línea fue válida o false si la línea causa algún error
+     */
+    private static boolean procesarLinea(String linea, Grafo grafo) {
         try {
             // Divide por cualquier tipo de espacio en blanco
             String[] partes = linea.trim().split("\\s+");
@@ -69,15 +83,18 @@ public class LectorTxt {
             }
             
             // agrega ciudades si no existen
-            if (!grafo.containsNode(ciudad1)) {
-                grafo.addNode(ciudad1);
-            }
-            if (!grafo.containsNode(ciudad2)) {
-                grafo.addNode(ciudad2);
-            }
+            grafo.addCity(ciudad1);
+            grafo.addCity(ciudad2);
             
             // Agrega la conección
-            grafo.addArc(ciudad1, ciudad2, tiempoNormal, tiempoLluvia, tiempoNieve, tiempoTormenta);
+            double[] tiempos = {
+            tiempoNormal,
+            tiempoLluvia,
+            tiempoNieve,
+            tiempoTormenta
+            };
+
+            grafo.addEdge(ciudad1, ciudad2, tiempos);
             
             return true;
             
