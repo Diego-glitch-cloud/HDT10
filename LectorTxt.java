@@ -7,7 +7,7 @@ import java.io.IOException;
 public class LectorTxt {
     
     // Carga un grafo desde logistica.txt
-    public static boolean cargarGrafo(String PathArchivo, GrafoAdyacencia grafo) {
+    public static boolean cargarGrafo(String PathArchivo, Grafo grafo) {
         int lineasProcesadas = 0;
         
         try (BufferedReader br = new BufferedReader(new FileReader(PathArchivo))) {
@@ -32,7 +32,7 @@ public class LectorTxt {
     }
     
     // revisa linea por linea el archivo
-    private static boolean procesarLinea(String linea, GrafoAdyacencia grafo) {
+    private static boolean procesarLinea(String linea, Grafo grafo) {
         try {
             // Divide por cualquier tipo de espacio en blanco
             String[] partes = linea.trim().split("\\s+");
