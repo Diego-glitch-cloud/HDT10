@@ -5,6 +5,8 @@ import java.io.IOException;
 public class LectorTxt {
     
     // Carga un grafo desde logistica.txt
+    // El formato del archivo es:
+    // ciudad1 ciudad2 tiempoNormal tiempoLluvia tiempoNieve tiempoTormenta 
     public static boolean cargarGrafo(String PathArchivo, GrafoAdyacencia grafo) {
         int lineasProcesadas = 0;
         
