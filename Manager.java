@@ -6,6 +6,10 @@ public class Manager {
     private double[][] dist;
     private int[][] next;
 
+    /**
+     * Constructor de la clase Manager.
+     * @param graph grafo a gestionar
+     */
     public Manager(Grafo graph) {
         this.graph = graph;
         this.currentClima = 0; // por defecto normal
@@ -52,6 +56,8 @@ public class Manager {
 
     /**
      * Obtiene la ruta más corta entre dos ciudades.
+     * @param from ciudad origen
+     * @param to ciudad destino
      */
     public List<String> getShortestPath(String from, String to) {
         Integer u = graph.getCityIndex(from);
@@ -69,6 +75,8 @@ public class Manager {
 
     /**
      * Obtiene la distancia (peso) de la ruta más corta.
+     * @param from ciudad origen
+     * @param to ciudad destino
      */
     public double getShortestDistance(String from, String to) {
         Integer u = graph.getCityIndex(from);
@@ -99,6 +107,7 @@ public class Manager {
 
     /**
      * Cambia el clima actual y recalcula Floyd.
+     * @param clima nuevo clima (0: normal, 1: lluvia, 2: nieve, 3: tormenta)
      */
     public void setClima(int clima) {
         if (clima < 0 || clima >= Grafo.CLIMAS)
@@ -109,6 +118,8 @@ public class Manager {
 
     /**
      * Interrumpe la conexión entre dos ciudades.
+     * @param from ciudad origen
+     * @param to ciudad destino
      */
     public void interruptEdge(String from, String to) {
         graph.removeEdge(from, to);
@@ -117,6 +128,9 @@ public class Manager {
 
     /**
      * Agrega o actualiza una conexión con sus tiempos de viaje.
+     * @param from ciudad origen
+     * @param to ciudad destino
+     * @param times tiempos de viaje para cada clima
      */
     public void addConnection(String from, String to, double[] times) {
         graph.addEdge(from, to, times);
@@ -125,6 +139,9 @@ public class Manager {
 
     /**
      * Modifica los tiempos de una arista.
+     * @param from ciudad origen
+     * @param to ciudad destino
+     * @param times nuevos tiempos de viaje para cada clima
      */
     public void updateTimes(String from, String to, double[] times) {
         graph.updateEdgeTimes(from, to, times);
