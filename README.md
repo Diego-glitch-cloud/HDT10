@@ -5,3 +5,5 @@ Diego Calderon - 241263
 
 UML de clases:
 ![image](https://github.com/user-attachments/assets/8d2bd02b-c72b-408e-a8f6-49e001e62fa7)
+
+Link del repo: https://github.com/Diego-glitch-cloud/HDT10
