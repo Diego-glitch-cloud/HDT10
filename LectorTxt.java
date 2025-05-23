@@ -1,5 +1,3 @@
-package HDT10;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -8,6 +6,7 @@ public class LectorTxt {
     
     // Carga un grafo desde logistica.txt
     public static boolean cargarGrafo(String PathArchivo, Grafo grafo) {
+
         int lineasProcesadas = 0;
         
         try (BufferedReader br = new BufferedReader(new FileReader(PathArchivo))) {
@@ -69,15 +68,18 @@ public class LectorTxt {
             }
             
             // agrega ciudades si no existen
-            if (!grafo.containsNode(ciudad1)) {
-                grafo.addNode(ciudad1);
-            }
-            if (!grafo.containsNode(ciudad2)) {
-                grafo.addNode(ciudad2);
-            }
+            grafo.addCity(ciudad1);
+            grafo.addCity(ciudad2);
             
             // Agrega la conección
-            grafo.addArc(ciudad1, ciudad2, tiempoNormal, tiempoLluvia, tiempoNieve, tiempoTormenta);
+            double[] tiempos = {
+            tiempoNormal,
+            tiempoLluvia,
+            tiempoNieve,
+            tiempoTormenta
+            };
+
+            grafo.addEdge(ciudad1, ciudad2, tiempos);
             
             return true;
             
